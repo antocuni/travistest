@@ -1,10 +1,24 @@
 language: minimal
 
+stages:
+  - docker-image
+  - wheels
+  - build-index
 
-env:
-  - PYPY="2.7"
-  - PYPY="3.5"
-  - PYPY="3.6"
+jobs:
+  include:
+    - stage: docker-image
+      script:
+        - echo "docker build"
 
-script:
-  - echo "pypy = $PYPY"
+    - stage: wheels
+      env:
+        - PYPY="2.7"
+        - PYPY="3.5"
+        - PYPY="3.6"
+      script:
+        echo "pypy = $PYPY"
+
+    - stage: build-index
+      script:
+        - echo "build index"
