@@ -1,14 +1,10 @@
-language: python
+language: minimal
 
-python:
-  - 2.7
-  - 3.5
-  - 3.6
 
 env:
-  - PYPY="2.7" PKG="numpy"
+  - PYPY="2.7"
   - PYPY="3.5"
   - PYPY="3.6"
 
 script:
-  - python --version
+  - echo "pypy = $PYPY"
