@@ -1,15 +1,14 @@
 language: python
 
-jobs:
-  include:
-    - script: echo "pypy2.7 -m pip install $PKG"
-
-  include:
-    - script: echo "pypy3.5 -m pip install $PKG"
-
+python:
+  - 2.7
+  - 3.5
+  - 3.6
 
 env:
-  - PKG="numpy"
-  - PKG="scipy"
-  - PKG="cython"
+  - PYPY="2.7" PKG="numpy"
+  - PYPY="3.5"
+  - PYPY="3.6"
 
+script:
+  - python --version
