@@ -4,6 +4,11 @@ env:
   - PYPY="2.7"
   - PYPY="3.5"
 
+env:
+  - PKG="numpy"
+  - PKG="scipy"
+  
 script:
   - echo "hello world"
   - echo "PYPY = $PYPY"
+  - echo "pip install $PKG"
