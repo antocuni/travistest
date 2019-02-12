@@ -5,20 +5,26 @@ stages:
   - wheels
   - build-index
 
+stage: wheels
+
+env:
+  - PYPY="2.7"
+  - PYPY="3.5"
+  - PYPY="3.6"
+
+script:
+  - echo "pypy = $PYPY"
+
+
+  
 jobs:
   include:
     - stage: docker-image
       script:
         - echo "docker build"
 
-    - stage: wheels
-      env:
-        - PYPY="2.7"
-        - PYPY="3.5"
-        - PYPY="3.6"
-      script:
-        echo "pypy = $PYPY"
-
     - stage: build-index
       script:
         - echo "build index"
+
+        
