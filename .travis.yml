@@ -1,12 +1,10 @@
 language: python
 
 env:
-  - PYPY="2.7"
-  - PYPY="3.5"
-
-env:
-  - PKG="numpy"
-  - PKG="scipy"
+  - PYPY="2.7" PKG="numpy"
+  - PYPY="3.5" PKG="numpy"
+  - PYPY="2.7" PKG="scipy"
+  - PYPY="3.5" PKG="scipy"
   
 script:
   - echo "hello world"
