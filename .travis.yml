@@ -1,4 +1,9 @@
 language: python
 
+env:
+  - PYPY="2.7"
+  - PYPY="3.5"
+
 script:
   - echo "hello world"
+  - echo "PYPY = $PYPY"
