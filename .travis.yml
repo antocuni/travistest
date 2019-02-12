@@ -1,15 +1,15 @@
 language: python
 
 jobs:
-    - env:
-      - PYPY="2.7"
-      - PYPY="3.5"
+  include:
+    - script: echo "pypy2.7 -m pip install $PKG"
 
-    - env:
-      - PKG="numpy"
-      - PKG="scipy"
-  
-script:
-  - echo "hello world"
-  - echo "PYPY = $PYPY"
-  - echo "pip install $PKG"
+  include:
+    - script: echo "pypy3.5 -m pip install $PKG"
+
+
+env:
+  - PKG="numpy"
+  - PKG="scipy"
+  - PKG="cython"
+
