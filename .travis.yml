@@ -1,7 +1,6 @@
 language: python
 
 jobs:
-  include:
     - env:
       - PYPY="2.7"
       - PYPY="3.5"
