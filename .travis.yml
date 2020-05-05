@@ -27,3 +27,6 @@ addons:
 
 
 stage: test
+
+install:
+  - echo nothing to do
