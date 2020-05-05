@@ -2,9 +2,6 @@ tsudo: false
 language: python
 sudo: required
 
-cache:
-  pip: true
-
 services:
   - docker
 env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
