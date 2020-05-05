@@ -30,3 +30,6 @@ stage: test
 
 install:
   - echo nothing to do
+
+script:
+  - echo nothing to do
