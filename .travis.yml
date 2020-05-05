@@ -1,35 +1,15 @@
 tsudo: false
 language: python
-
-matrix:
-  fast_finish: true
-  include:
-    - python: '2.7'
-
-    - stage: deploy
-      sudo: required
-      services:
-        - docker
-      env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
-      install:
-        - docker pull $DOCKER_IMAGE
-      script:
-        - docker image ls $DOCKER_IMAGE
-        - docker run --rm -v `pwd`:/foo $DOCKER_IMAGE /foo/build-wheels.sh
+sudo: required
 
 cache:
   pip: true
 
-addons:
-  apt:
-    packages:
-      - python-dev
-
-
-stage: test
-
+services:
+  - docker
+env: DOCKER_IMAGE=quay.io/pypa/manylinux1_x86_64
 install:
-  - echo nothing to do
-
+  - docker pull $DOCKER_IMAGE
 script:
-  - echo nothing to do
+  - docker image ls $DOCKER_IMAGE
+  - docker run --rm -v `pwd`:/foo $DOCKER_IMAGE /foo/build-wheels.sh
