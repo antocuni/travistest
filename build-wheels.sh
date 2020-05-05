@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e -x
+set -e # -x
 
 # Compile wheels
 PYTHONS=(
@@ -8,8 +8,8 @@ PYTHONS=(
     )
 
 for pydir in "${PYTHONS[@]}"; do
+    echo "creating wheel, pydir: $pydir"
     pybin=/opt/python/$pydir/bin
-    "${pybin}/pip" install 'cython>=0.25'
     "${pybin}/pip" wheel /foo/ -w wheelhouse/
 
     # create the sdist if it does not exist yet
@@ -17,13 +17,16 @@ for pydir in "${PYTHONS[@]}"; do
     then
         (cd /foo && "${pybin}/python" setup.py sdist)
     fi
+    echo
 done
 
-echo
-echo "objdump of foo.so"
-pushd /tmp/
-unzip /wheelhouse/foo-*-cp27-cp27mu-linux_x86_64.whl
-objdump -T foo.so | grep PyUnicode
-echo
-md5sum foo.so
-popd
+for whl in /wheelhouse/foo-*.whl
+do
+    echo
+    echo
+    cd `mktemp -d`
+    echo $whl
+    unzip -q $whl
+    objdump -T foo.so | grep PyUnicode
+    md5sum foo.so
+done

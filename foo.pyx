@@ -1,2 +1,0 @@
-cpdef foo():
-    pass
