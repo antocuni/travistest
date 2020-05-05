@@ -12,11 +12,7 @@ for pydir in "${PYTHONS[@]}"; do
     pybin=/opt/python/$pydir/bin
     "${pybin}/pip" wheel /foo/ -w wheelhouse/
 
-    # create the sdist if it does not exist yet
-    if [[ ! -d /foo/dist ]]
-    then
-        (cd /foo && "${pybin}/python" setup.py sdist)
-    fi
+    rm -rf /foo/build
     echo
 done
 
